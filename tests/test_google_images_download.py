@@ -27,7 +27,8 @@ def test_download_images_to_default_location():
     else:
         assert False, "This test checks download to default location yet an output folder was provided"
 
-    output_folder_path = os.path.join(os.path.realpath('.'), 'downloads', '{}'.format(argumnets['keywords']))
+    expected_dir = argumnets['keywords'].lower().replace(' ', '-')
+    output_folder_path = os.path.join(os.path.realpath('.'), 'downloads', '{}'.format(expected_dir))
     if os.path.exists(output_folder_path):
         start_amount_of_files_in_output_folder = len([name for name in os.listdir(output_folder_path) if os.path.isfile(os.path.join(output_folder_path, name)) and os.path.getctime(os.path.join(output_folder_path, name)) < start_time])
     else:
